@@ -1,99 +1,118 @@
 import random
 
 def aces(dice):
-    acesScore = 0
+    played[0] += 1
     for num in dice:
         if (num == 1):
-            acesScore += 1
-    return acesScore
+            played[0] += 1
+    return
 
 def twos(dice):
-    twosScore = 0
+    played[1] += 1
     for num in dice:
         if (num == 2):
-            twosScore += 2
-    return twosScore
+            played[1] += 2
+    return
 
 def threes(dice):
-    threesScore = 0
+    played[2] += 1
     for num in dice:
         if (num == 3):
-            threesScore += 3
-    return threesScore
+            played[2] += 3
+    return
 
 def fours(dice):
-    foursScore = 0
+    played[3] += 1
     for num in dice:
         if (num == 4):
-            foursScore += 4
-    return foursScore
+            played[3] += 4
+    return
 
 def fives(dice):
-    fivesScore = 0
+    played[4] += 1
     for num in dice:
         if (num == 5):
-            fivesScore += 5
-    return fivesScore
+            played[4] += 5
+    return
 
 def sixes(dice):
-    sixesScore = 0
+    played[5] += 1
     for num in dice:
         if (num == 6):
-            sixesScore += 6
-    return sixesScore
+            played[5] += 6
+    return
 
 def threeofaKind(dice):
-    kind3Score = 0
+    played[6] += 1
     for num in dice:
-        kind3Score += num
-    return kind3Score
+        played[6] += num
+    return
 
 def fourofaKind(dice):
-    kind4Score = 0
+    played[7] += 1
     for num in dice:
-        kind4Score += num
-    return kind4Score
+        played[7] += num
+    return
 
 def fullHouse(dice):
-    houseScore = 25
-    return houseScore
+    played[8] = 25
+    return
 
 def smallStraight(dice):
-    smStraightScore = 30
-    return smStraightScore
+    played[9] = 30
+    return
 
 def largeStraight(dice):
-    lgStraightScore = 40
-    return lgStraightScore
+    played[10] = 40
+    return
 
-def yahtzee(dice, yahtzeeTracker):
-    if(yahtzeeTracker > 0):
-        yahtzeeScore = 100
-    else:
-        yahtzeeScore = 50
-    return yahtzeeScore
+def yahtzee(dice):
+    played[11] = 50
+    return
 
 def chance(dice):
-    chanceScore = 0
     for num in dice:
-        chanceScore += num
-    return chanceScore
+        played[12] += num
+    return
+
+def yahtzeeBonus(dice):
+    yahtzeeBonusScore = 0
+    if (played[13] < 300):
+        yahtzeeBonusScore = 100
+    return yahtzeeBonusScore
+
+def roll():
+    die1 = random.randint(1,6)
+    die2 = random.randint(1,6)
+    die3 = random.randint(1,6)
+    die4 = random.randint(1,6)
+    die5 = random.randint(1,6)
+    dice = [die1, die2, die3, die4, die5]
+    return dice
+
+def bestMove(dice):
+    if (dice[0] == dice[1] and dice[0] == dice[2] and dice[0] == dice[3] and dice[0] == dice[4] and dice[0] == dice[5]): #Checks for yahtzee
+        if(yahtzeeTracker == 0):
+            yahtzeeTracker += 1
+            dice[11] == 50
 
 
-    
 
 
-die1 = random.randint(1,6)
-die2 = random.randint(1,6)
-die3 = random.randint(1,6)
-die4 = random.randint(1,6)
-die5 = random.randint(1,6)
 
+
+global player
+global roll
+global played
+player = 1
+roll = 1
+played = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+global yahtzeeTracker
 yahtzeeTracker = 0
 
-print "Dice numbers are: {}, {}, {}, {}, {}.".format(die1, die2, die3, die4, die5)
+#print "Dice numbers are: {}, {}, {}, {}, {}.".format(die1, die2, die3, die4, die5)
 
-dice = [die1, die2, die3, die4, die5]
+
 
 score = aces(dice)
 print "Score is: {}".format(score)
