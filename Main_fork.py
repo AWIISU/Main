@@ -8,8 +8,9 @@ def aces():
     for num in dice:
         if num == 1:
             played[0] += 1
-    if player == 1:
+    if player == 0:
         played0[0] = played[0]
+
     else:
         played1[0] = played[0]
     return
@@ -20,7 +21,7 @@ def twos():
     for num in dice:
         if num == 2:
             played[1] += 2
-    if player == 1:
+    if player == 0:
         played0[1] = played[1]
     else:
         played1[1] = played[1]
@@ -32,7 +33,7 @@ def threes():
     for num in dice:
         if num == 3:
             played[2] += 3
-    if player == 1:
+    if player == 0:
         played0[2] = played[2]
     else:
         played1[2] = played[2]
@@ -44,7 +45,7 @@ def fours():
     for num in dice:
         if num == 4:
             played[3] += 4
-    if player == 1:
+    if player == 0:
         played0[3] = played[3]
     else:
         played1[3] = played[3]
@@ -56,7 +57,7 @@ def fives():
     for num in dice:
         if num == 5:
             played[4] += 5
-    if player == 1:
+    if player == 0:
         played0[4] = played[4]
     else:
         played1[4] = played[4]
@@ -68,7 +69,7 @@ def sixes():
     for num in dice:
         if num == 6:
             played[5] += 6
-    if player == 1:
+    if player == 0:
         played0[5] = played[5]
     else:
         played1[5] = played[5]
@@ -76,11 +77,11 @@ def sixes():
 
 
 def threeofakind():
-    played[6] = 0
-    if dice[0] == dice[1] == dice[2] or dice[1] == dice[2] == dice[3] or dice[2] == dice[3] == dice[4]:
-        for num in dice:
-            played[6] += num
-    if player == 1:
+    played[6] = 5
+    #if dice[0] == dice[1] == dice[2] or dice[1] == dice[2] == dice[3] or dice[2] == dice[3] == dice[4]:
+    for num in dice:
+        played[6] += num
+    if player == 0:
         played0[6] = played[6]
     else:
         played1[6] = played[6]
@@ -92,7 +93,7 @@ def fourofakind():
     if dice[0] == dice[1] == dice[2] == dice[3] or dice[1] == dice[2] == dice[3] == dice[4]:
         for num in dice:
             played[7] += num
-    if player == 1:
+    if player == 0:
         played0[7] = played[7]
     else:
         played1[7] = played[7]
@@ -103,7 +104,7 @@ def fullhouse():
     played[8] = 0
     if (dice[0] == dice[1] == dice[2] and dice[3] == dice[4]) or (dice[0] == dice[1] and dice[2] == dice[3] == dice[4]):
         played[8] = 25
-    if player == 1:
+    if player == 0:
         played0[8] = played[8]
     else:
         played1[8] = played[8]
@@ -114,7 +115,7 @@ def smallstraight():
     played[9] = 0
     if (dice[0] == dice[1] - 1 == dice[2] - 2 == dice[3] - 3) or (dice[1] == dice[2] - 1 == dice[3] - 2 == dice[4] - 3):
         played[9] = 30
-    if player == 1:
+    if player == 0:
         played0[9] = played[9]
     else:
         played1[9] = played[9]
@@ -125,7 +126,7 @@ def largestraight():
     played[10] = 0
     if dice[0] == dice[1] - 1 == dice[2] - 2 == dice[3] - 3 == dice[4] - 4:
         played[10] = 40
-    if player == 1:
+    if player == 0:
         played0[10] = played[10]
     else:
         played1[10] = played[10]
@@ -136,7 +137,7 @@ def yahtzee():
     played[11] = 0
     if dice[0] == dice[1] == dice[2] == dice[3] == dice[4]:
         played[11] = 50
-    if player == 1:
+    if player == 0:
         played0[11] = played[11]
     else:
         played1[11] = played[11]
@@ -146,7 +147,7 @@ def yahtzee():
 def chance():
     for num in dice:
         played[12] += num
-    if player == 1:
+    if player == 0:
         played0[12] = played[12]
     else:
         played1[12] = played[12]
@@ -202,18 +203,21 @@ def roll():
 
 
 def checkisdone():  # Checks if the players are done
+    i = 0
     if player == 0:
         for num in played0:
-            if num == -1:
+            if num == -1 and i < 12:
                 return
-        else:
-            isDone[0] = True
+            i += 1
+        isDone[0] = True
+        return
     else:
         for num in played1:
-            if num == -1:
+            if num == -1 and i < 12:
                 return
-        else:
-            isDone[1] = True
+            i += 1
+        isDone[1] = True
+        return
 
 
 def playagainsthuman():  # code for two humans
@@ -295,23 +299,74 @@ def playagainsthuman():  # code for two humans
 
 
 def bestplays():  # code for best move mode
-    while isDone[0] == False:
+    if isDone[0] == False:
         # run the dice rolling code here
-        if dice[0] == dice[1] == dice[2] == dice[3] == dice[4]:
-            yahtzee()
-        elif (dice[0] == dice[1] - 1 == dice[2] - 2 == dice[3] - 3 == dice[4] - 4) and played0[10] != -1:
-            largestraight()
-        elif (dice[0] == dice[1] - 1 == dice[2] - 2 == dice[3] - 3) or (dice[1] == dice[2] - 1 == dice[3] - 2 == dice[4] - 3) and played0[9] != -1:
-            smallstraight()
-        elif (dice[0] == dice[1] == dice[2] and dice[3] == dice[4]) or (dice[0] == dice[1] and dice[2] == dice[3] == dice[4]) and played0[8] != -1:
-            fullhouse()
-        elif (dice[0] == dice[1] == dice[2] == dice[3] or dice[1] == dice[2] == dice[3] == dice[4]) and played0[7] != -1:
-            fourofakind()
-        elif (dice[0] == dice[1] == dice[2] or dice[1] == dice[2] == dice[3] or dice[2] == dice[3] == dice[4]) and played0[6] != -1:
-            threeofakind()
         numdice = [0, 0, 0, 0, 0, 0]
         for num in dice:
             numdice[num - 1] += 1
+        if dice[0] == dice[1] == dice[2] == dice[3] == dice[4] and played0[11] == -1:
+            yahtzee()
+        elif (dice[0] == dice[1] - 1 == dice[2] - 2 == dice[3] - 3 == dice[4] - 4) and played0[10] == -1:
+            largestraight()
+        elif (dice[0] == dice[1] - 1 == dice[2] - 2 == dice[3] - 3) or (dice[1] == dice[2] - 1 == dice[3] - 2 == dice[4] - 3) and played0[9] == -1:
+            smallstraight()
+        elif (dice[0] == dice[1] == dice[2] and dice[3] == dice[4]) or (dice[0] == dice[1] and dice[2] == dice[3] == dice[4]) and played0[8] == -1:
+            fullhouse()
+        elif (dice[0] == dice[1] == dice[2] == dice[3] or dice[1] == dice[2] == dice[3] == dice[4]) and played0[7] == -1:
+            fourofakind()
+        elif (dice[0] == dice[1] == dice[2] or dice[1] == dice[2] == dice[3] or dice[2] == dice[3] == dice[4]) and played0[6] == -1:
+            threeofakind()
+        elif numdice[0] > 2 and played0[0] == -1:
+            aces()
+        elif numdice[1] > 2 and played0[1] == -1:
+            twos()
+        elif numdice[2] > 2 and played0[2] == -1:
+            threes()
+        elif numdice[3] > 2 and played0[3] == -1:
+            fours()
+        elif numdice[4] > 2 and played0[4] == -1:
+            fives()
+        elif numdice[5] > 2 and played0[5] == -1:
+            sixes()
+        elif played0[12] == -1:
+            chance()
+        elif played0[0] == -1 and numdice[0] > 0:
+            aces()
+        elif played0[1] == -1 and numdice[1] > 0:
+            twos()
+        elif played0[2] == -1 and numdice[2] > 0:
+            threes()
+        elif played0[3] == -1 and numdice[3] > 0:
+            fours()
+        elif played0[4] == -1 and numdice[4] > 0:
+            fives()
+        elif played0[5] == -1 and numdice[5] > 0:
+            sixes()
+        elif played0[0] == -1:
+            aces()
+        elif played0[1] == -1:
+            twos()
+        elif played0[2] == -1:
+            threes()
+        elif played0[3] == -1:
+            fours()
+        elif played0[4] == -1:
+            fives()
+        elif played0[5] == -1:
+            sixes()
+        elif played0[6] == -1:
+            threeofakind()
+        elif played0[7] == -1:
+            fourofakind()
+        elif played0[8] == -1:
+            fullhouse()
+        elif played0[9] == -1:
+            smallstraight()
+        elif played0[10] == -1:
+            largestraight()
+        elif played0[11] == -1:
+            yahtzee()
+
 
         checkisdone()
     return
@@ -342,12 +397,15 @@ whichScoring = -1  # Which function should be used? (aces, twos, threes, etc.)
 global scoringList
 
 
-dice = roll()
-aces()
+dice = [1, 1, 1, 1, 1]
+bestplays()
+checkisdone()
 print "dice are: {}".format(dice)
-print "aces score would be: {}".format(played[0])
-threes()
-print"threes score would be: {}".format(played[2])
+print "aces score would be: {}".format(played0[0])
+print"threes score would be: {}".format(played0[2])
+print"three of a kind score would be: {}".format(played0[6])
+print"Yahtzee score would be: {}".format(played0[11])
+print"Is he done? {}".format(isDone[0])
 
 
 score = 0
