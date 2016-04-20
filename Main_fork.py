@@ -397,7 +397,7 @@ whichScoring = -1  # Which function should be used? (aces, twos, threes, etc.)
 global scoringList
 
 
-dice = [1, 1, 1, 1, 1]
+"""dice = [1, 1, 1, 1, 1]
 bestplays()
 checkisdone()
 print "dice are: {}".format(dice)
@@ -405,7 +405,11 @@ print "aces score would be: {}".format(played0[0])
 print"threes score would be: {}".format(played0[2])
 print"three of a kind score would be: {}".format(played0[6])
 print"Yahtzee score would be: {}".format(played0[11])
-print"Is he done? {}".format(isDone[0])
+print"Is he done? {}".format(isDone[0])"""
+
+roll()
+print"Dice are: {}".format(dice)
+
 
 
 score = 0
