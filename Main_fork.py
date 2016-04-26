@@ -9,9 +9,9 @@ MIN_PIP_AREA = 10
 # first functions for use in calculating score, each one called changes the list item that the score is tallied to
 
 
-def aces():
+def aces(cubes):
     played[0] = 0
-    for num in dice:
+    for num in cubes:
         if num == 1:
             played[0] += 1
     if player == 0:
@@ -19,7 +19,7 @@ def aces():
 
     else:
         played1[0] = played[0]
-    return
+    return played[0]
 
 
 def twos():
@@ -179,6 +179,7 @@ def roll():
     die5 = random.randint(1, 6)
     dice = [die1, die2, die3, die4, die5]
     dice.sort()
+    print "it works"
     return dice
 
 '''def getdice():
@@ -251,7 +252,6 @@ def roll():
 
 """def playagainstbot():  # all of the code for playing against a bot
     while isDone[0] == False and isDone[1] == False:
-
         if isDone[0] == False and isDone[1] == True:
             player = 0
         elif isDone[0] == True and isDone[1] == False:
@@ -264,7 +264,6 @@ def roll():
                 whichRoll = [0, 0, 0, 0, 0]
                 # TODO math calculations
                 roll()
-
             # TODO
             player -= 1
     return"""
@@ -289,6 +288,32 @@ def checkisdone():  # Checks if the players are done
 
 
 def playagainsthuman():  # code for two humans
+
+    global player  # which player is up and playing
+    player = 0
+    global played
+    played = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    global played0  # the list that tracks each score in each category
+    played0 = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+    global played1
+    played1 = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+    global dice
+    dice = [0, 0, 0, 0, 0]
+    global rollNum
+    rollNum = 1  # current roll of the current player, from 1-3
+    # list played tracks both the score kept in the respective slot, unused slots are set to -1, 14 items total
+    global yahtzeeTracker  # tracks if yahtzee was used or not for totaling the bonus
+    yahtzeeTracker = [0, 0]
+    global gameMode  # Keeps track of game mode selected (1 = Bot, 2 = friend, 3 = best move)
+    gameMode = 0
+    global isDone  # Is the game over?
+    isDone = [False, False]
+    # global whichRoll
+    # whichRoll = [0, 0, 0, 0, 0]   Which dice should be rolled?
+    global whichScoring
+    whichScoring = -1  # Which function should be used? (aces, twos, threes, etc.)
+    global scoringList
+
     while isDone[0] == False and isDone[1] == False:
         if isDone[0] == False and isDone[1] == True:
             player = 0
@@ -476,8 +501,8 @@ print"three of a kind score would be: {}".format(played0[6])
 print"Yahtzee score would be: {}".format(played0[11])
 print"Is he done? {}".format(isDone[0])"""
 
-dice = roll()
-print"Dice are: {}".format(dice)
+#dice = roll()
+#print"Dice are: {}".format(dice)
 
 
 
