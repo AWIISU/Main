@@ -22,142 +22,142 @@ def aces(cubes):
     return played[0]
 
 
-def twos():
+def twos(cubes):
     played[1] = 0
-    for num in dice:
+    for num in cubes:
         if num == 2:
             played[1] += 2
     if player == 0:
         played0[1] = played[1]
     else:
         played1[1] = played[1]
-    return
+    return played[1]
 
 
-def threes():
+def threes(cubes):
     played[2] = 0
-    for num in dice:
+    for num in cubes:
         if num == 3:
             played[2] += 3
     if player == 0:
         played0[2] = played[2]
     else:
         played1[2] = played[2]
-    return
+    return played[2]
 
 
-def fours():
+def fours(cubes):
     played[3] = 0
-    for num in dice:
+    for num in cubes:
         if num == 4:
             played[3] += 4
     if player == 0:
         played0[3] = played[3]
     else:
         played1[3] = played[3]
-    return
+    return played[3]
 
 
-def fives():
+def fives(cubes):
     played[4] = 0
-    for num in dice:
+    for num in cubes:
         if num == 5:
             played[4] += 5
     if player == 0:
         played0[4] = played[4]
     else:
         played1[4] = played[4]
-    return
+    return played[4]
 
 
-def sixes():
+def sixes(cubes):
     played[5] = 0
-    for num in dice:
+    for num in cubes:
         if num == 6:
             played[5] += 6
     if player == 0:
         played0[5] = played[5]
     else:
         played1[5] = played[5]
-    return
+    return played[5]
 
 
-def threeofakind():
+def threeofakind(cubes):
     played[6] = 5
-    #if dice[0] == dice[1] == dice[2] or dice[1] == dice[2] == dice[3] or dice[2] == dice[3] == dice[4]:
-    for num in dice:
+    #if cubes[0] == cubes[1] == cubes[2] or cubes[1] == cubes[2] == cubes[3] or cubes[2] == cubes[3] == cubes[4]:
+    for num in cubes:
         played[6] += num
     if player == 0:
         played0[6] = played[6]
     else:
         played1[6] = played[6]
-    return
+    return played[6]
 
 
-def fourofakind():
+def fourofakind(cubes):
     played[7] = 0
-    if dice[0] == dice[1] == dice[2] == dice[3] or dice[1] == dice[2] == dice[3] == dice[4]:
-        for num in dice:
+    if cubes[0] == cubes[1] == cubes[2] == cubes[3] or cubes[1] == cubes[2] == cubes[3] == cubes[4]:
+        for num in cubes:
             played[7] += num
     if player == 0:
         played0[7] = played[7]
     else:
         played1[7] = played[7]
-    return
+    return played[7]
 
 
-def fullhouse():
+def fullhouse(cubes):
     played[8] = 0
-    if (dice[0] == dice[1] == dice[2] and dice[3] == dice[4]) or (dice[0] == dice[1] and dice[2] == dice[3] == dice[4]):
+    if (cubes[0] == cubes[1] == cubes[2] and cubes[3] == cubes[4]) or (cubes[0] == cubes[1] and cubes[2] == cubes[3] == cubes[4]):
         played[8] = 25
     if player == 0:
         played0[8] = played[8]
     else:
         played1[8] = played[8]
-    return
+    return played[8]
 
 
-def smallstraight():
+def smallstraight(cubes):
     played[9] = 0
-    if (dice[0] == dice[1] - 1 == dice[2] - 2 == dice[3] - 3) or (dice[1] == dice[2] - 1 == dice[3] - 2 == dice[4] - 3):
+    if (cubes[0] == cubes[1] - 1 == cubes[2] - 2 == cubes[3] - 3) or (cubes[1] == cubes[2] - 1 == cubes[3] - 2 == cubes[4] - 3):
         played[9] = 30
     if player == 0:
         played0[9] = played[9]
     else:
         played1[9] = played[9]
-    return
+    return played[9]
 
 
-def largestraight():
+def largestraight(cubes):
     played[10] = 0
-    if dice[0] == dice[1] - 1 == dice[2] - 2 == dice[3] - 3 == dice[4] - 4:
+    if cubes[0] == cubes[1] - 1 == cubes[2] - 2 == cubes[3] - 3 == cubes[4] - 4:
         played[10] = 40
     if player == 0:
         played0[10] = played[10]
     else:
         played1[10] = played[10]
-    return
+    return played[10]
 
 
-def yahtzee():
+def yahtzee(cubes):
     played[11] = 0
-    if dice[0] == dice[1] == dice[2] == dice[3] == dice[4]:
+    if cubes[0] == cubes[1] == cubes[2] == cubes[3] == cubes[4]:
         played[11] = 50
     if player == 0:
         played0[11] = played[11]
     else:
         played1[11] = played[11]
-    return
+    return played[11]
 
 
-def chance():
-    for num in dice:
+def chance(cubes):
+    for num in cubes:
         played[12] += num
     if player == 0:
         played0[12] = played[12]
     else:
         played1[12] = played[12]
-    return
+    return played[12]
 
 
 def yahtzeebonus():
