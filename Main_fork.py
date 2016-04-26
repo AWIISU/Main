@@ -391,78 +391,72 @@ def playagainsthuman():  # code for two humans
     return
 
 
-def bestplays():  # code for best move mode
-    if isDone[0] == False:
+def bestplays(cube):  # code for best move mode
         # run the dice rolling code here
         numdice = [0, 0, 0, 0, 0, 0]
-        for num in dice:
+        for num in cube:
             numdice[num - 1] += 1
-        if dice[0] == dice[1] == dice[2] == dice[3] == dice[4] and played0[11] == -1:
-            yahtzee()
-        elif (dice[0] == dice[1] - 1 == dice[2] - 2 == dice[3] - 3 == dice[4] - 4) and played0[10] == -1:
-            largestraight()
-        elif (dice[0] == dice[1] - 1 == dice[2] - 2 == dice[3] - 3) or (dice[1] == dice[2] - 1 == dice[3] - 2 == dice[4] - 3) and played0[9] == -1:
-            smallstraight()
-        elif (dice[0] == dice[1] == dice[2] and dice[3] == dice[4]) or (dice[0] == dice[1] and dice[2] == dice[3] == dice[4]) and played0[8] == -1:
-            fullhouse()
-        elif (dice[0] == dice[1] == dice[2] == dice[3] or dice[1] == dice[2] == dice[3] == dice[4]) and played0[7] == -1:
-            fourofakind()
-        elif (dice[0] == dice[1] == dice[2] or dice[1] == dice[2] == dice[3] or dice[2] == dice[3] == dice[4]) and played0[6] == -1:
-            threeofakind()
+        if cube[0] == cube[1] == cube[2] == cube[3] == cube[4] and played0[11] == -1:
+            return "yahtzee"
+        elif (cube[0] == cube[1] - 1 == cube[2] - 2 == cube[3] - 3 == cube[4] - 4) and played0[10] == -1:
+            return "large straight"
+        elif (cube[0] == cube[1] - 1 == cube[2] - 2 == cube[3] - 3) or (cube[1] == cube[2] - 1 == cube[3] - 2 == cube[4] - 3) and played0[9] == -1:
+            return "small straight"
+        elif (cube[0] == cube[1] == cube[2] and cube[3] == cube[4]) or (cube[0] == cube[1] and cube[2] == cube[3] == cube[4]) and played0[8] == -1:
+            return "full house"
+        elif (cube[0] == cube[1] == cube[2] == cube[3] or cube[1] == cube[2] == cube[3] == cube[4]) and played0[7] == -1:
+            return "four of a kind"
+        elif (cube[0] == cube[1] == cube[2] or cube[1] == cube[2] == cube[3] or cube[2] == cube[3] == cube[4]) and played0[6] == -1:
+            return "three of a kind"
         elif numdice[0] > 2 and played0[0] == -1:
-            aces()
+            return "aces"
         elif numdice[1] > 2 and played0[1] == -1:
-            twos()
+            return "twos"
         elif numdice[2] > 2 and played0[2] == -1:
-            threes()
+            return "threes"
         elif numdice[3] > 2 and played0[3] == -1:
-            fours()
+            return "fours"
         elif numdice[4] > 2 and played0[4] == -1:
-            fives()
+            return "fives"
         elif numdice[5] > 2 and played0[5] == -1:
-            sixes()
+            return "sixes"
         elif played0[12] == -1:
-            chance()
+            return "chance"
         elif played0[0] == -1 and numdice[0] > 0:
-            aces()
+            return "aces"
         elif played0[1] == -1 and numdice[1] > 0:
-            twos()
+            return "twos"
         elif played0[2] == -1 and numdice[2] > 0:
-            threes()
+            return "threes"
         elif played0[3] == -1 and numdice[3] > 0:
-            fours()
+            return "fours"
         elif played0[4] == -1 and numdice[4] > 0:
-            fives()
+            return "fives"
         elif played0[5] == -1 and numdice[5] > 0:
-            sixes()
+            return "sixes"
         elif played0[0] == -1:
-            aces()
+            return "aces"
         elif played0[1] == -1:
-            twos()
+            return "twos"
         elif played0[2] == -1:
-            threes()
+            return "threes"
         elif played0[3] == -1:
-            fours()
+            return "fours"
         elif played0[4] == -1:
-            fives()
+            return "fives"
         elif played0[5] == -1:
-            sixes()
+            return "sixes"
         elif played0[6] == -1:
-            threeofakind()
+           return "three of a kind"
         elif played0[7] == -1:
-            fourofakind()
+            return "four of a kind"
         elif played0[8] == -1:
-            fullhouse()
+            return "full house"
         elif played0[9] == -1:
-            smallstraight()
+            return "small straight"
         elif played0[10] == -1:
-            largestraight()
-        elif played0[11] == -1:
-            yahtzee()
-
-
-        checkisdone()
-    return
+            return "large straight"
+        return "yahtzee"
 
 
 global player   # which player is up and playing
@@ -492,7 +486,7 @@ global scoringList
 
 
 """dice = [1, 1, 1, 1, 1]
-bestplays()
+bestplays(dice)
 checkisdone()
 print "dice are: {}".format(dice)
 print "aces score would be: {}".format(played0[0])
